@@ -36,11 +36,6 @@ public class Main extends SpringController implements CommandLineRunner {
         log.print("Open in browser: http://localhost:8081");
     }
 
-    @GetMapping("/")
-    public ModelAndView drawHome() {
-        return new ModelAndView("/html/home");
-    }
-
     @Override
     public void run(String... args) {
         testUser();

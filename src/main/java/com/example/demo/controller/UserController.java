@@ -28,6 +28,14 @@ public class UserController extends SpringController {
         this.userId = id;
     }
 
+
+
+    @GetMapping("/")
+    public ModelAndView drawHome() {
+        return new ModelAndView("/html/home");
+    }
+
+
     @GetMapping("/edit/{id}")
     public ModelAndView drawEdit(@PathVariable long id, Model model, boolean detail) {
 
