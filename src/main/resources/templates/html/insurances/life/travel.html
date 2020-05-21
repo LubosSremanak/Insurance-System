@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Contract</title>
+</head>
+<link href="/css/table1.css" rel="stylesheet"/>
+<link href="/css/header1.css" rel="stylesheet"/>
+<link href="/css/page2.css" rel="stylesheet"/>
+<link href="/css/field.css" rel="stylesheet"/>
+<link href="/css/label.css" rel="stylesheet"/>
+<link href="/css/section1.css" rel="stylesheet"/>
+
+<body>
+<!-- header start -->
+<div class="header">
+
+    <a href=""><img alt="header" src="/images/logo/header.png"></a>
+    <a href="/">Home</a>
+    <a href="/user">Users</a>
+    <a href="/contract">Contracts</a>
+
+
+</div>
+<!-- header end -->
+
+<!-- table start -->
+
+
+<div class="undHeadSection">
+
+    <img src="/images/contract.png"><br>
+    <span style="font-weight:bold">Travel insurance</span><br>
+    <span>ID:</span>
+    <span class="center" th:text="${contract.contractNumber}"></span>
+
+</div>
+
+<form id="field" th:object="${contract}"
+      th:onsubmit="'return actionOnSubmit('+${edit}+','+${contractId}+','+${userId}+')'" method="post"  >
+
+    <div class="undUndSection">
+        <h1 class="center">Date</h1>
+        <label>Begin date</label>
+        <input id="beginDate" placeholder="" required th:field="*{beginInsurance}" type="date"/><br/>
+        <label>End Date</label>
+        <input id="endDate" placeholder="" required th:field="*{endInsurance}" type="date"/><br/>
+    </div>
+    <div class="undUndSection">
+        <h1 class="center">Payment</h1>
+        <label>Indemnity</label>
+        <input id="indemnity" placeholder="" required th:field="*{indemnity}" min="0" type="number"/><br>
+        <label>Monthly payment</label>
+        <input id="monthlyPayment" placeholder="" required th:field="*{monthlyPayment}" min="0" type="number"/>
+    </div>
+    <div class="undUndSection">
+        <h1 class="center">Person</h1>
+        <select id="insured.id" name="insured.id" style="background-color: black;color: whitesmoke" required>
+            <option hidden value=""> Select insured</option>
+            <option th:each="user : ${users}"
+                    th:text="${user.value.identification.firstName}+' '+${user.value.identification.lastName}+' '+${user.value.id}"
+                    th:value="${user.value.id}"/>
+            <label>Insured</label>
+        </select>
+    </div>
+    <div class="undUndSection">
+        <h1 class="center">Trip</h1>
+        <select id="purposeOfTrip" name="purposeOfTrip" style="width: 22.5%;background-color: black;color: whitesmoke" required>
+            <option hidden value=""> Select purpose</option>
+            <option th:each="purpose : ${allPurposeOfTrip}"
+                    th:text="${purpose.toWord()}"
+                    th:value="${purpose}"/>
+            <label>Trip</label>>
+        </select><br>
+    </div>
+    <div class="undUndSection">
+        <h1 class="center">Area</h1>
+        <label>Europe</label>
+        <input class="center" id="europe" placeholder="" th:field="*{europe}" type=checkbox/><br>
+    </div>
+
+
+    <div class="undHeadSection">
+        <input class="submit" th:value="${edit} ? 'Edit' : 'Add'" type="submit"/>
+    </div>
+</form>
+</body>
+<script>
+    function actionOnSubmit(control, contractId, userId) {
+
+        var isValidateDate=checkDate();
+        //Get the selected value of the select list
+        if(!isValidateDate) {
+            return false;
+        }
+
+        //Get the selected value of the select list
+        var val = "/add/Travel/" + userId;
+
+        if (control)
+            val = "/edit/Travel/" + contractId + "/" + userId;
+
+        /* if (detail)
+             val = "/edit/contract/detail/" + id;*/
+
+        var frm = document.getElementById('field');
+        frm.action = val;
+    }
+
+    function checkDate() {
+        var selectedTextBegin = document.getElementById('beginDate').value;
+        var selectedTextEnd = document.getElementById('endDate').value;
+        var beginDate = new Date(selectedTextBegin);
+        var endDate = new Date(selectedTextEnd);
+
+        if (beginDate>=endDate) {
+            alert("Begin date must be smaller as End date!");
+            return false;
+        }
+        return true;
+    }
+</script>
+</html>

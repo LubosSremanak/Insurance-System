@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<link href="/css/table.css" rel="stylesheet"/>
+<link href="/css/header1.css" rel="stylesheet"/>
+<link href="/css/page2.css" rel="stylesheet"/>
+<link href="/css/field.css" rel="stylesheet"/>
+<link href="/css/label.css" rel="stylesheet"/>
+<link href="/css/section1.css" rel="stylesheet"/>
+
+
+<!-- header start -->
+<body>
+<div class="header">
+
+    <a href=""><img src="/images/logo/header.png"></a>
+    <a href="/">Home</a>
+    <a href="/user">Users</a>
+    <a href="/contract">Contracts</a>
+
+
+</div>
+<!-- header end -->
+
+
+<div class="undHeadSection">
+
+    <img src="/images/user1.png"><br>
+    <span style="font-weight:bold" th:if="${edit == true}">Edit user</span>
+    <span style="font-weight: bold" th:unless="${edit == true}">Add user</span>
+</div>
+
+<form id="field" method="post" th:object="${user}"
+      th:onsubmit="'actionOnSubmit('+${detail}+','+${edit}+','+${user.id}+')'">
+
+
+    <div class="undUndSection">
+        <h1 class="center">Identity</h1>
+        <label for="Name">Name</label>
+        <input id="Name" placeholder="Name" th:field="*{identification.firstName}" required type="text"/><br/>
+        <label for="Surname">Surname</label>
+        <input id="Surname" placeholder="Surname" th:field="*{identification.lastName}" required type="text"/><br/>
+        <label for="IdentificationCode">Identity code</label>
+        <input id="IdentificationCode" placeholder="892109/8564" MINLENGTH="11" maxlength="11" required pattern="^[0-9]{6}(/[0-9]{4})?$"
+               th:field="*{identification.identificationNumber}" type="text"/>
+
+    </div>
+
+    <div class="undUndSection">
+        <h1 class="center">Contact</h1>
+        <label for=Email>Email"</label>
+        <input id="Email" placeholder="name@domen.sk" th:field="*{contact.email}" required type="email"/><br/>
+        <label for=PhoneNumber>Phone</label>
+        <input id="PhoneNumber" placeholder="0988 265 589" th:field="*{contact.phoneNumber}"
+              minlength="10" maxlength="10" required type="text"/>
+    </div>
+    <div class="undUndSection">
+        <h1 class="center">Address</h1>
+        <label for=Country>Country</label>
+        <input id="Country" placeholder="Slovakia" th:field="*{address.place.country}" required type="text"/><br/>
+        <label for=City>City</label>
+        <input id="City" placeholder="Presov" th:field="*{address.place.city}" required type="text"/><br/>
+        <label for=Street>Street</label>
+        <input id="Street" placeholder="Sibirska" th:field="*{address.place.street}" required type="text"/><br/>
+        <label for=HouseNumber>House number</label>
+        <input id="HouseNumber" min="1" placeholder="21" th:field="*{address.houseNumber}"
+               required type="number"/><br/>
+
+        <label for=PSC>PSC</label>
+        <input id="PSC" placeholder="08001" th:field="*{address.psc}" required type="text" minlength="5" maxlength="6"/>
+    </div>
+
+    <div class="undUndSection">
+        <h1 class="centered">Correspondence address
+            <input id="myCheck" onclick="myFunction()" type="checkbox">
+        </h1>
+
+        <p id="text" style="display:none">
+
+            <label for=CountryC>Country</label>
+            <input id="CountryC" placeholder="Slovakia" th:field="*{correspondenceAddress.place.country}"
+                   type="text"/><br/>
+            <label for=CityC>City</label>
+            <input id="CityC" placeholder="Presov" th:field="*{correspondenceAddress.place.city}"
+                   type="text"/><br/>
+            <label for=StreetC>Street</label>
+            <input id="StreetC" placeholder="Sibirska" th:field="*{correspondenceAddress.place.street}"
+                   type="text"/><br/>
+            <label for=HouseNumberC>House number</label>
+            <input id="HouseNumberC" placeholder="21" th:field="*{correspondenceAddress.houseNumber}"
+                   type="number"/><br/>
+
+        <label for=pscC>PSC</label>
+        <input id="pscC" placeholder="08001" th:field="*{correspondenceAddress.psc}" minlength="5" maxlength="6" type="text"/>
+    </div>
+    </p>
+    <div class="undHeadSection">
+        <input class="submit" th:value="${edit} ? 'Edit' : 'Add'" type="submit"/>
+
+    </div>
+</form>
+</body>
+<script>
+    function actionOnSubmit(detail, control, id) {
+
+        var val = "/user";
+
+        //Get the selected value of the select list
+
+        if (control)
+            val = "/edit/" + id;
+
+
+        if (detail)
+            val = "/edit/detail/" + id;
+
+        var frm = document.getElementById('field');
+        frm.action = val;
+    }
+
+    function myFunction() {
+        // Get the checkbox
+        var checkBox = document.getElementById("myCheck");
+        // Get the output text
+        var text = document.getElementById("text");
+
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true) {
+            text.style.display = "block";
+        } else {
+            text.style.display = "none";
+        }
+    }
+</script>
+
+</html>

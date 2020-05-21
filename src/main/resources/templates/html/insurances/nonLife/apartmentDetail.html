@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+
+<link href="/css/table1.css" rel="stylesheet"/>
+<link href="/css/header1.css" rel="stylesheet"/>
+<link href="/css/page2.css" rel="stylesheet"/>
+<link href="/css/section1.css" rel="stylesheet"/>
+<link href="/css/align1.css" rel="stylesheet"/>
+<link href="/css/borderButton1.css" rel="stylesheet"/>
+
+<body>
+<!-- header start -->
+<div class="header">
+
+    <a href=""><img alt="header" src="/images/logo/header.png"></a>
+    <a href="/">Home</a>
+    <a href="/user">Users</a>
+    <a href="/contract">Contracts</a>
+
+
+</div>
+
+
+<div class="undHeadSection">
+
+
+    <img src="/images/contract.png"><br>
+    <span th:text="${contract.getName()}"></span><br>
+    <label>ID:</label>
+    <span th:text="${contract.contractNumber}"></span>
+</div>
+<div class="undUndSection">
+    <div>
+        <h3>Date</h3>
+        <label>Formation:</label> <span th:text="${contract.formation}"></span><br>
+        <label>Begin :</label> <span th:text="${contract.beginInsurance}"></span><br>
+        <label>End:</label> <span th:text="${contract.endInsurance}"></span><br>
+    </div>
+</div>
+
+<div class="undUndSection">
+    <div>
+        <h3>Payment</h3>
+        <label>Indemnity:</label> <span th:text="${contract.indemnity}"></span><br>
+        <label>Monthly:</label><span th:text="${contract.monthlyPayment}"></span><br>
+
+    </div>
+</div>
+
+
+<div class="undUndSection">
+    <div>
+        <h3>Insurer</h3>
+        <label>Id:</label> <span th:text="${contract.insurer.id}"></span><br>
+        <label>Name:</label> <span th:text="${contract.insurer.identification.firstName}"></span><br>
+        <label>Surname:</label> <span th:text="${contract.insurer.identification.lastName}"></span><br>
+
+    </div>
+</div>
+
+<div class="undUndSection">
+    <div>
+        <h3>Address</h3>
+        <label>Country:</label> <span th:text="${contract.address.place.country}"></span><br>
+        <label>City:</label> <span th:text="${contract.address.place.city}"></span><br>
+        <label>Street:</label><span th:text="${contract.address.place.street}"></span><br>
+        <label>House number:</label> <span th:text="${contract.address.houseNumber}"></span><br>
+        <label>PSC:</label><span th:text="${contract.address.psc}"></span><br>
+    </div>
+</div>
+
+<div class="undUndSection">
+    <div>
+        <h3>Real estate</h3>
+        <label>Type:</label> <span th:text="${contract.typeOfRealEstate.toWord()}"></span><br>
+        <label>Value:</label> <span th:text="${contract.realEstateValue}"></span><br>
+        <label>Reinsurance:</label><span th:if="${contract.reinsurance == true}">Yes</span>
+        <span th:unless="${contract.reinsurance == true}">No</span>
+    </div>
+</div>
+<div class="undHeadSection">
+
+    <a th:href="@{'/edit/contract/'+${contract.contractNumber}+'/'+${contract.insurer.id}}">
+        <img class="circle" src="/images/editContract.png" style="height: 55px"></a><br>
+    <label>Edit contract</label>
+</div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Contract</title>
+</head>
+<link href="/css/table1.css" rel="stylesheet"/>
+<link href="/css/header1.css" rel="stylesheet"/>
+<link href="/css/page2.css" rel="stylesheet"/>
+<link href="/css/field.css" rel="stylesheet"/>
+<link href="/css/label.css" rel="stylesheet"/>
+<link href="/css/section1.css" rel="stylesheet"/>
+
+
+<body>
+<!-- header start -->
+<div class="header">
+
+    <a href=""><img alt="header" src="/images/logo/header.png"></a>
+    <a href="/">Home</a>
+    <a href="/user">Users</a>
+    <a href="/contract">Contracts</a>
+
+
+</div>
+<!-- header end -->
+
+<!-- table start -->
+
+
+<div class="undHeadSection">
+
+    <img src="/images/contract.png"><br>
+    <span style="font-weight:bold">Apartment insurance</span><br>
+    <span>ID:</span>
+    <span class="center" th:text="${contract.contractNumber}"></span>
+
+</div>
+
+<form id="field" th:object="${contract}"
+      th:onsubmit="'return actionOnSubmit('+${edit}+','+${contractId}+','+${userId}+')'" method="post">
+
+    <div class="undUndSection">
+        <h1 class="center">Date</h1>
+        <label>Begin date</label>
+        <input id="beginDate" placeholder="" required th:field="*{beginInsurance}" th:onchange="checkDate()"
+               type="date"/><br/>
+        <label>End Date</label>
+        <input id="endDate" placeholder="" required th:field="*{endInsurance}" th:onchange="checkDate()"
+               type="date"/><br/>
+    </div>
+
+    <div class="undUndSection">
+        <h1 class="center">Payment</h1>
+        <label>Indemnity</label>
+        <input id="indemnity" placeholder="" required th:field="*{indemnity}" min="0" type="number"/><br>
+        <div class="undUndSection">
+            <label>Monthly payment</label>
+            <input id="monthlyPayment" placeholder="" required th:field="*{monthlyPayment}" min="0" type="number"/>
+        </div>
+
+    </div>
+    <div class="undUndSection">
+        <h1 class="center">Address</h1>
+        <label for=Country>Country</label>
+        <input id="Country" placeholder="Slovakia" required th:field="*{address.place.country}" type="text"/><br/>
+        <label for=City>City</label>
+        <input id="City" placeholder="Presov" required th:field="*{address.place.city}" type="text"/><br/>
+        <label for=Street>Street</label>
+        <input id="Street" placeholder="Sibirska" required th:field="*{address.place.street}" type="text"/><br/>
+        <label for=HouseNumber>House number</label>
+        <input id="HouseNumber" min="1" placeholder="21" required th:field="*{address.houseNumber}"
+               type="number"/><br/>
+        <label for=PSC>PSC</label>
+        <input id="PSC" placeholder="08001" required th:field="*{address.psc}" type="text"
+               minlength="5" maxlength="6"/>
+    </div>
+
+    <div class="undUndSection">
+        <h1 class="center">Real estate</h1>
+        <label>Type</label>
+        <select id="typeOfRealEstate" name="typeOfRealEstate"
+                style="width:22.5% ;background-color: black;color: whitesmoke" required>
+            <option hidden value=""> Select type</option>
+            <option th:each="estate : ${allRealEstates}"
+                    th:text="${estate.toWord()}"
+                    th:value="${estate}"/>
+
+        </select><br>
+
+        <label>Value</label>
+        <input id="realEstateValue" placeholder="200,50€" required th:field="*{realEstateValue}" min="0" type="number"/>
+
+    </div>
+    <div class="undUndSection">
+        <label>Reinsurance</label>
+        <input class="center" id="reinsurance" th:field="*{reinsurance}" type="checkbox"/><br/>
+    </div>
+    <div class="undHeadSection">
+        <input class="submit" th:value="${edit} ? 'Edit' : 'Add'" type="submit"/>
+
+    </div>
+</form>
+</body>
+<script>
+    function actionOnSubmit(control, contractId, userId) {
+
+        var isValidateDate = checkDate();
+        //Get the selected value of the select list
+        if (!isValidateDate) {
+            return false;
+        }
+
+        //Get the selected value of the select list
+        var val = "/add/Apartment/" + userId;
+
+        if (control)
+            val = "/edit/Apartment/" + contractId + "/" + userId;
+
+
+        /* if (detail)
+             val = "/edit/contract/detail/" + id;*/
+
+        var frm = document.getElementById('field');
+        frm.action = val;
+    }
+
+
+    function checkDate() {
+        var selectedTextBegin = document.getElementById('beginDate').value;
+        var selectedTextEnd = document.getElementById('endDate').value;
+        var beginDate = new Date(selectedTextBegin);
+        var endDate = new Date(selectedTextEnd);
+
+        if (beginDate >= endDate) {
+            alert("Begin date must be smaller as End date!");
+            return false;
+        }
+        return true;
+    }
+</script>
+</html>

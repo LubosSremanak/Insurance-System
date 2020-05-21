@@ -1,0 +1,83 @@
+html {
+    width: 100%;
+}
+
+body {
+    font-family: 'Handlee', cursive;
+    font-size: 13pt;
+    background-color: #efefef;
+    padding: 10px;
+
+    height: 500px;
+    width: 960px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 15pt;
+    color: black;
+    text-align: center;
+    padding: 18px 0 18px 0;
+    margin: 0 0 10px 0;
+}
+
+h1 span {
+    border: 4px solid gray;
+    padding: 10px;
+
+}
+
+.selected {
+    background-color: #f36f48;
+    font-weight: bold;
+    color: white;
+}
+
+
+li {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+progress {
+    width: 70%;
+    height: 20px;
+    color: #3fb6b2;
+    background: #efefef;
+}
+
+progress::-webkit-progress-bar {
+    background: #efefef;
+}
+
+progress::-webkit-progress-value {
+    background: #3fb6b2;
+}
+
+progress::-moz-progress-bar {
+    color: #3fb6b2;
+    background: #efefef;
+}
+
+iframe, audio {
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #3fb6b2;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #f36f48;
+}
+
+form {
+    text-align: center;
+    margin-top: 0;
+}
+
+
+p {
+    padding: 0;
+    margin: 0;
+}

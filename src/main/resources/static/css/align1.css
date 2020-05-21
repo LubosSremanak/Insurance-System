@@ -1,0 +1,14 @@
+
+.center {
+    display: inline-block;
+    width: 140px;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+}
+
+h3 {
+    color: #636262;
+}

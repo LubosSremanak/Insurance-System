@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<link href="/css/table1.css" rel="stylesheet"/>
+<link href="/css/header1.css" rel="stylesheet"/>
+<link href="/css/page2.css" rel="stylesheet"/>
+<link href="/css/section1.css" rel="stylesheet"/>
+
+
+<body>
+<!-- header start -->
+<div class="header">
+
+    <a href=""><img src="/images/logo/header.png"></a>
+    <a href="/">Home</a>
+    <a class="active" href="/user">Users</a>
+    <a href="/contract">Contracts</a>
+
+
+</div>
+<!-- header end -->
+<div class="undHeadSection">
+
+    <img src="/images/user1.png"><br>
+    <label style="font-weight: bold">All users</label>
+
+</div>
+<!-- table start -->
+<div class="section">
+    <div class="tableFixHead">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody th:each="user:${userList}">
+
+            <td th:text="${user.value.id}"></td>
+            <td th:text="${user.value.identification.firstName}"></td>
+            <td th:text="${user.value.identification.lastName}"></td>
+            <td th:text="${user.value.contact.email}"></td>
+            <td><a th:href="@{'/edit/'+${user.value.id}}"> <img src="/images/editTable.png"
+                                                                style="height:20px;width: 20px"></a></td>
+            <td><a th:href="@{'/detail/'+${user.value.id}}"><img src="/images/detailTable.png"
+                                                                 style="height:20px;width: 20px"></a></td>
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<!-- table end -->
+<div class="undHeadSection">
+
+    <a href="/addUser"><img alt="" src="/images/plus1.png">
+    </a><br>
+    <label>Add user</label>
+
+
+</div>
+
+</body>
+</html>

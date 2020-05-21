@@ -1,0 +1,54 @@
+.section {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+
+
+}
+
+.undSection {
+    background-color: #d7d5d5;
+    padding: 15px;
+    margin-bottom: 10px;
+
+
+}
+
+.undHeadSection {
+
+    background-color: #d7d5d5;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+
+}
+
+.undUndSection {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+
+
+}
+
+.heelSection {
+
+    background-color: #d7d5d5;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+
+
+}
+
+
+.quote {
+    font-size: 12pt;
+    text-align: right;
+    margin-top: 10px;
+}

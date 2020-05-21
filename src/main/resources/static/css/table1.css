@@ -1,0 +1,40 @@
+.tableFixHead {
+    overflow: auto;
+    height: 400px;
+    width: 100%;
+
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: -1%;
+}
+
+.tableFixHead tbody:nth-child(even) {
+    background-color: rgba(238, 236, 236, 0.85);
+}
+
+.tableFixHead tbody:hover {
+    background-color: white;
+}
+
+/* Just common table stuff. Really. */
+table {
+    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    text-align: center;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #939393;
+    color: black;
+}

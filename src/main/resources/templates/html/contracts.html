@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contracts</title>
+</head>
+<link href="/css/table1.css" rel="stylesheet"/>
+<link href="/css/header1.css" rel="stylesheet"/>
+<link href="/css/page2.css" rel="stylesheet"/>
+<link href="/css/section1.css" rel="stylesheet"/>
+
+
+<body>
+<!-- header start -->
+<div class="header">
+
+    <a href=""><img src="/images/logo/header.png"></a>
+    <a href="/">Home</a>
+    <a href="/user">Users</a>
+    <a class="active" href="/contracts">Contracts</a>
+
+
+</div>
+<!-- header end -->
+<div class="undHeadSection">
+
+    <img src="/images/contract.png"><br>
+    <label style="font-weight: bold">All contracts</label>
+
+</div>
+<!-- table start -->
+<div class="section">
+    <div class="tableFixHead">
+        <table>
+            <thead>
+            <tr>
+                <th>Insurance</th>
+                <th>Number</th>
+                <th>Sign date</th>
+                <th>Begin date</th>
+                <th>End date</th>
+                <th>Monthly payment</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody th:each="contract:${contract.values()}">
+
+            <td th:text="${contract.getName()}"></td>
+            <td th:text="${contract.contractNumber}"></td>
+            <td th:text="${contract.formation}"></td>
+            <td th:text="${contract.beginInsurance}"></td>
+            <td th:text="${contract.endInsurance}"></td>
+            <td th:text="${contract.monthlyPayment}"></td>
+            <td><a th:href="@{'/detail/contract/'+${contract.contractNumber}}">
+                <img src="/images/detailTable.png" style="height:20px;width: 20px"></a></td>
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- table end -->
+<div class="undHeadSection">
+
+    <a href="/addUser"><img alt="" src="/images/plus1.png">
+    </a><br>
+    <label>Add user</label>
+
+
+</div>
+
+</body>
+</html>

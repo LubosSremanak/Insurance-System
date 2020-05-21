@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+<title>Insurance system</title>
+
+<head>
+    <link href="/css/header1.css" rel="stylesheet"/>
+    <link href="/css/page2.css" rel="stylesheet"/>
+    <link href="/css/section1.css" rel="stylesheet"/>
+    <link href="/css/contact1.css" rel="stylesheet"/>
+    <link href="/css/copyright.css" rel="stylesheet"/>
+
+
+<body>
+<!-- header start -->
+<th:block th:include="/html/header.html"></th:block>
+
+<div class="undHeadSection">
+
+    <img src="/images/home.png"><br>
+    <label style="font-weight: bold">Insurance system</label>
+
+</div>
+
+<!-- header end -->
+
+<!-- About Me section start -->
+
+<div class="section">
+
+    <h1><u>About Web</u></h1>
+    <p>
+        Application for work with insurance system including
+        building and editing user list, generation and modification of contracts.
+    </p>
+
+</div>
+<!-- About Me section end -->
+
+<!-- Contacts section start -->
+<div class="section">
+    <h1><u>Contact Me</u></h1>
+    <form>
+        <input name="name" placeholder="Name" required type="text"/><br/>
+        <input name="email" placeholder="Email" required type="email"/><br/>
+        <textarea name="message" placeholder="Message" required></textarea><br/>
+        <input class="submits" type="submit" value="SEND"/>
+    </form>
+</div>
+
+
+<div class="section" id="contacts">
+
+    <div style="position: center">
+        <h1><u>Follow Me</u></h1>
+        <a href="https://www.facebook.com/lubos.sremanak">
+            <img alt="Facebook" class="follow" src="/images/logo/fb.png"/>
+        </a>
+        <a href="https://www.instagram.com/lubossssssssss/">
+            <img alt="Instagram" class="follow" src="/images/logo/ig.png"/>
+        </a>
+        <a href="https://sk.linkedin.com/in/lubos-sremanak-13428219b">
+            <img alt="Linkedin" src="/images/logo/ln.png"/>
+        </a>
+    </div>
+</div>
+<!-- Contacts section end -->
+
+<div class="copyright">
+    &copy; 2020 Lubos Sremanak. All rights reserved.
+</div>
+
+</body>
+</html>

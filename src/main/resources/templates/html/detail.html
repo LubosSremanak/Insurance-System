@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+
+<link href="/css/table1.css" rel="stylesheet"/>
+<link href="/css/header1.css" rel="stylesheet"/>
+<link href="/css/page2.css" rel="stylesheet"/>
+<link href="/css/section1.css" rel="stylesheet"/>
+<link href="/css/align1.css" rel="stylesheet"/>
+<link href="/css/borderButton1.css" rel="stylesheet"/>
+
+<body>
+<!-- header start -->
+<div class="header">
+
+    <a href=""><img alt="header" src="/images/logo/header.png"></a>
+    <a href="/">Home</a>
+    <a href="/user">Users</a>
+    <a href="/contract">Contracts</a>
+
+
+</div>
+<!-- header end -->
+
+<!-- table start -->
+
+
+<div class="undHeadSection">
+
+
+    <img src="/images/user1.png"><br>
+    <label>User ID:</label>
+    <span th:text="${user.id}"></span>
+</div>
+
+
+<div class="undUndSection">
+    <div>
+        <h3>Identity</h3>
+        <label>Name:</label> <span th:text="${user.identification.firstName}"></span><br>
+        <label>Surname:</label> <span th:text="${user.identification.lastName}"></span><br>
+        <label>Identity code:</label> <span
+            th:text="${user.identification.identificationNumber}"></span><br>
+    </div>
+</div>
+
+<div class="undUndSection">
+    <div>
+        <h3>Contact</h3>
+        <label>Email:</label> <span th:text="${user.contact.email}"></span><br>
+        <label>Phone:</label><span th:text="${user.contact.phoneNumber}"></span><br>
+    </div>
+</div>
+
+<div class="undUndSection">
+    <div>
+        <h3>Address</h3>
+        <label>Country:</label> <span th:text="${user.address.place.country}"></span><br>
+        <label>City:</label> <span th:text="${user.address.place.city}"></span><br>
+        <label>Street:</label><span th:text="${user.address.place.street}"></span><br>
+        <label>House number:</label> <span th:text="${user.address.houseNumber}"></span><br>
+        <label>PSC:</label><span th:text="${user.address.psc}"></span><br>
+    </div>
+</div>
+
+<div class="undUndSection">
+    <div>
+        <h3>Correspondence address</h3>
+        <label>Country:</label><span th:text="${user.correspondenceAddress.place.country}"></span><br>
+        <label>City:</label> <span th:text="${user.correspondenceAddress.place.city}"></span><br>
+        <label>Street:</label><span th:text="${user.correspondenceAddress.place.street}"></span><br>
+        <label>House number:</label><span th:text="${user.correspondenceAddress.houseNumber}"></span><br>
+        <label>PSC:</label><span th:text="${user.correspondenceAddress.psc}"></span><br>
+    </div>
+</div>
+<div class="undHeadSection">
+
+            <a th:href="@{'/edit/detail/'+${user.id}}">
+                <img class="circle" src="/images/editUser.png" style="height: 55px"></a><br>
+            <label>Edit user</label>
+        </div>
+
+
+</div>
+
+<div class="section">
+</div>
+
+<div class="undHeadSection">
+
+    <img src="/images/contract.png"><br>
+    <label>Contracts</label>
+
+
+</div>
+
+
+<div class="section">
+    <div class="tableFixHead">
+        <table>
+            <thead>
+            <tr>
+                <th>Insurance</th>
+                <th>Number</th>
+                <th>Sign date</th>
+                <th>Begin date</th>
+                <th>End date</th>
+                <th>Monthly payment</th>
+                <th>Edit</th>
+                <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody th:each="contract:${user.contracts}">
+
+            <td th:text="${contract.getName()}"></td>
+            <td th:text="${contract.contractNumber}"></td>
+            <td th:text="${contract.formation}"></td>
+            <td th:text="${contract.beginInsurance}"></td>
+            <td th:text="${contract.endInsurance}"></td>
+            <td th:text="${contract.monthlyPayment}"></td>
+            <td><a th:href="@{'/edit/contract/'+${contract.contractNumber}+'/'+${user.id}}">
+                <img src="/images/editTable.png" style="height:20px;width: 20px"></a></td>
+            <td><a th:href="@{'/detail/contract/'+${contract.contractNumber}}">
+                <img src="/images/detailTable.png" style="height:20px;width: 20px"></a></td>
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<div class="undHeadSection">
+
+    <form id="field" method='POST' th:action="'/create/contract/'+${user.id}" th:object="${comboBox}">
+
+        <div class="row">
+
+            <select style="background-color: black;color: whitesmoke" th:field="*{insurance}" required>
+                <option hidden value=""> Select insurance</option>
+                <option th:each="contract : ${allInsurances}"
+                        th:utext="${contract.toWord()}"
+                        th:value="${contract}"/>
+            </select>
+        </div>
+        <div class="row">
+            <input alt="Submit" class="circle" height=55px src="/images/createContract.png" type="image"><br>
+            <label>Create contract</label>
+        </div>
+    </form>
+
+
+</div>
+</body>
+</html>
