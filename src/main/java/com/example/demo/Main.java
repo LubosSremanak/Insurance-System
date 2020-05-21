@@ -16,6 +16,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 
@@ -36,8 +37,9 @@ public class Main extends SpringController implements CommandLineRunner {
     }
 
     @GetMapping("/")
-    public String drawHome() {
-        return "/html/home";
+    public ModelAndView drawHome() {
+
+        return new ModelAndView("/html/home");
     }
 
     @Override
