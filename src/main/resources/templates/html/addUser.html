@@ -46,7 +46,8 @@
         <label for="Surname">Surname</label>
         <input id="Surname" placeholder="Surname" required th:field="*{identification.lastName}" type="text"/><br/>
         <label for="IdentificationCode">Identity code</label>
-        <input MINLENGTH="11" id="IdentificationCode" maxlength="11" pattern="^[0-9]{6}(/[0-9]{4})?$" placeholder="892109/8564"
+        <input MINLENGTH="11" id="IdentificationCode" maxlength="11" pattern="^[0-9]{6}(/[0-9]{4})?$"
+               placeholder="892109/8564"
                required
                th:field="*{identification.identificationNumber}" type="text"/>
 
@@ -111,15 +112,19 @@
     function actionOnSubmit(detail, control, id) {
 
         var val = "/user";
-
+        var checker = false;
         //Get the selected value of the select list
-
+        var checkBox = document.getElementById("myCheck");
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true) {
+            checker = true;
+        }
         if (control)
-            val = "/edit/" + id;
+            val = "/edit/" + id + "/" + checker;
 
 
         if (detail)
-            val = "/edit/detail/" + id;
+            val = "/edit/detail/" + id + "/" + checker;
 
         var frm = document.getElementById('field');
         frm.action = val;

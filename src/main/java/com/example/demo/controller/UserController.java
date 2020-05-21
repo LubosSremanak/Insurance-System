@@ -5,6 +5,7 @@ import com.example.demo.contract.insurance.Insurances;
 import com.example.demo.controller.item.ComboBox;
 import com.example.demo.user.AutoIncrement;
 import com.example.demo.user.User;
+import com.example.demo.user.personalInformation.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,10 +44,15 @@ public class UserController extends SpringController {
     }
 
 
-    @PostMapping("/edit/{id}")
-    public String editUser(@ModelAttribute @Valid User user) {
+    @PostMapping("/edit/{id}/{check}")
+    public String editUser(@ModelAttribute @Valid User user, @PathVariable boolean check) {
+        System.out.println(check);
+
+        if (check)
+            user.setCorrespondenceAddress(user.getCorrespondenceAddress());
+        else
+            user.setCorrespondenceAddress(new Address(user.getAddress()));
         userManager.editUser(user.getId()).copy(user);
-        user.setCorrespondenceAddress(user.getCorrespondenceAddress());
         return "redirect:/user";
     }
 
@@ -82,10 +88,15 @@ public class UserController extends SpringController {
         return drawEdit(id, model, true);
     }
 
-    @PostMapping("/edit/detail/{id}")
-    public String detailEditUser(@ModelAttribute @Valid User user) {
+    @PostMapping("/edit/detail/{id}/{check}")
+    public String detailEditUser(@ModelAttribute @Valid User user,@PathVariable boolean check) {
+
+
+        if (check)
+            user.setCorrespondenceAddress(user.getCorrespondenceAddress());
+        else
+            user.setCorrespondenceAddress(new Address(user.getAddress()));
         userManager.editUser(user.getId()).copy(user);
-        user.setCorrespondenceAddress(user.getCorrespondenceAddress());
         return "redirect:/detail/{id}";
     }
 
