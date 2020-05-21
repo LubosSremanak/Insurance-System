@@ -37,10 +37,6 @@ public class Main extends SpringController implements CommandLineRunner {
     }
 
 
-    @GetMapping("/")
-    public ModelAndView drawHome() {
-        return new ModelAndView("/html/home");
-    }
 
     @Override
     public void run(String... args) {
