@@ -1,7 +1,5 @@
 package com.example.demo.user.personalInformation;
 
-import com.sun.istack.internal.Nullable;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -17,7 +15,7 @@ public class Contact {
     public Contact() {
     }
 
-    public Contact(@Nullable String phoneNumber, @Nullable String email) {
+    public Contact(String phoneNumber, String email) {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
