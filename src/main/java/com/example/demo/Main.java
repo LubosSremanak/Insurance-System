@@ -44,8 +44,8 @@ public class Main extends SpringController implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-       /* testUser();
-        testUser1();*/
+       testUser();
+        testUser1();
     }
 
     private void testUser() {
