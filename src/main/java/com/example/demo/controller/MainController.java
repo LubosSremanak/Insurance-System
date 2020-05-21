@@ -10,7 +10,7 @@ public class MainController {
 
     @GetMapping("/")
     public ModelAndView drawHome() {
-        return new ModelAndView("home");
+        return new ModelAndView("html/home");
     }
 
 }
