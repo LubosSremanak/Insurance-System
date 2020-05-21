@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,7 +10,7 @@ public class MainController {
 
     @GetMapping("/")
     public ModelAndView drawHome() {
-        return new ModelAndView("/html/home");
+        return new ModelAndView("home");
     }
 
 }
