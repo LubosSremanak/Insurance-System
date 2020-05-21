@@ -41,7 +41,7 @@ public class ContractController extends SpringController {
     @GetMapping("/contract")
     public ModelAndView drawContracts(Model model) {
         model.addAttribute("contract", userManager.getContracts());
-        return new ModelAndView("/html/contracts");
+        return new ModelAndView("html/contracts");
     }
 
     @GetMapping("/detail/contract/{contractId}")
@@ -167,16 +167,16 @@ public class ContractController extends SpringController {
 
 
         if (insurance instanceof TravelInsurance) {
-            return new ModelAndView("/html/insurances/life/travel");
+            return new ModelAndView("html/insurances/life/travel");
         }
         if (insurance instanceof HomeInsurance) {
-            return new ModelAndView("/html/insurances/nonLife/home");
+            return new ModelAndView("html/insurances/nonLife/home");
         }
         if (insurance instanceof ApartmentInsurance) {
-            return new ModelAndView("/html/insurances/nonLife/apartment");
+            return new ModelAndView("html/insurances/nonLife/apartment");
         }
 
-        return new ModelAndView("/html/insurances/life/accident");
+        return new ModelAndView("html/insurances/life/accident");
 
     }
 

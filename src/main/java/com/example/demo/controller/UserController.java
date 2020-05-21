@@ -39,7 +39,7 @@ public class UserController extends SpringController {
         } else {
             model.addAttribute("edit", true);
         }
-        return new ModelAndView("/html/addUser");
+        return new ModelAndView("html/addUser");
     }
 
 
@@ -53,7 +53,7 @@ public class UserController extends SpringController {
     @GetMapping("/user")
     public ModelAndView drawUser(Model model) {
         model.addAttribute("userList", userManager.getUsers());
-        return new ModelAndView("/html/user");
+        return new ModelAndView("html/user");
     }
 
     @GetMapping("/addUser")
@@ -62,7 +62,7 @@ public class UserController extends SpringController {
         model.addAttribute("user", new User(this.userId.getId()));
         model.addAttribute("edit", false);
 
-        return new ModelAndView("/html/addUser");
+        return new ModelAndView("html/addUser");
     }
 
     @PostMapping("/user")
@@ -95,7 +95,7 @@ public class UserController extends SpringController {
         model.addAttribute("user", userManager.editUser(id));
         model.addAttribute("allInsurances", Insurances.values());
         model.addAttribute("comboBox", new ComboBox());
-        return new ModelAndView("/html/detail");
+        return new ModelAndView("html/detail");
     }
 
 }

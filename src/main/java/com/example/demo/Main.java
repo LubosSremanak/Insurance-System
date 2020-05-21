@@ -75,15 +75,15 @@ public class Main extends SpringController implements CommandLineRunner {
     private void testUser1() {
         User user = new User(1);
 
-        Identification identification = new Identification("Tomas", "Srak",
-                "797621/2508");
+        Identification identification = new Identification("Lopi", "Poko",
+                "797621/2338");
         user.setIdentification(identification);
 
-        Contact contact = new Contact("0983215262", "ssanak.lubos@gmail.com");
+        Contact contact = new Contact("0913215262", "sikolopik.lubos@gmail.com");
         user.setContact(contact);
 
-        Place place = new Place("Slovakia", "Presov", "JSa");
-        Address address = new Address(place, 21, "085122");
+        Place place = new Place("Hungary", "Budapest", "Romaron");
+        Address address = new Address(place, 21, "048122");
         user.setAddress(address);
         Address correspondenceAddress = new Address(address);
         user.setCorrespondenceAddress(correspondenceAddress);
@@ -98,7 +98,7 @@ public class Main extends SpringController implements CommandLineRunner {
         contract.setTerritorialValidity(TerritorialValidity.SLOVAKIA);
         contract.setInsurer(user);
 
-        Place place1 = new Place("Slovakia", "Presov", "JSa");
+        Place place1 = new Place("Slovakia", "Presov", "Mukacevska");
         Address address1 = new Address(place1, 21, "085122");
         HomeInsurance homeInsurance = new HomeInsurance(2);
         homeInsurance.setMonthlyPayment(100);
