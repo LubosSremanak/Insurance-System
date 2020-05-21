@@ -5,12 +5,86 @@
 
 
 <head>
+    <link href="/static/css/header1.css" rel="stylesheet"/>
+    <link href="/static/css/page2.css" rel="stylesheet"/>
+    <link href="/static/css/section1.css" rel="stylesheet"/>
+    <link href="/static/css/contact1.css" rel="stylesheet"/>
+    <link href="/static/css/copyright.css" rel="stylesheet"/>
     <title>Insurance system</title>
 
 
 <body>
+<!-- header start -->
+<div class="header">
 
-<label>Kokotinaaaaaaaaaaaaaaaaaaaaaaaaaaa</label>
+    <a href=""><img src="/static/images/logo/header.png" alt="logoHeader"></a>
+    <a class="active" href="/">Home</a>
+    <a href="/user">Users</a>
+    <a href="/contract">Contracts</a>
+
+
+</div>
+
+<div class="undHeadSection">
+
+    <img src="/static/images/home.png" alt="homeImage"><br>
+    <label style="font-weight: bold">Insurance system</label>
+
+</div>
+
+<!-- header end -->
+
+<!-- About Me section start -->
+
+<div class="section">
+
+    <h1><u>About Web</u></h1>
+    <p>
+        Application for work with insurance system including
+        building and editing user list, generation and modification of contracts.
+    </p>
+
+</div>
+<!-- About Me section end -->
+
+<!-- Contacts section start -->
+<div class="section">
+    <h1><u>Contact Me</u></h1>
+    <form>
+        <label>
+            <input name="name" placeholder="Name" required type="text"/>
+        </label><br/>
+        <label>
+            <input name="email" placeholder="Email" required type="email"/>
+        </label><br/>
+        <label>
+            <textarea name="message" placeholder="Message" required></textarea>
+        </label><br/>
+        <input class="submits" type="submit" value="SEND"/>
+    </form>
+</div>
+
+
+<div class="section" id="contacts">
+
+    <div style="position: center">
+        <h1><u>Follow Me</u></h1>
+        <a href="https://www.facebook.com/lubos.sremanak">
+            <img alt="Facebook" class="follow" src="/static/images/logo/fb.png"/>
+        </a>
+        <a href="https://www.instagram.com/lubossssssssss/">
+            <img alt="Instagram" class="follow" src="/static/images/logo/ig.png"/>
+        </a>
+        <a href="https://sk.linkedin.com/in/lubos-sremanak-13428219b">
+            <img alt="Linkedin" src="/static/images/logo/ln.png"/>
+        </a>
+    </div>
+</div>
+<!-- Contacts section end -->
+
+<div class="copyright">
+    &copy; 2020 Lubos Sremanak. All rights reserved.
+</div>
 
 </body>
 </html>
