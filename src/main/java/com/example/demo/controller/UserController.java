@@ -30,10 +30,6 @@ public class UserController extends SpringController {
 
 
 
-    @GetMapping("/")
-    public ModelAndView drawHome() {
-        return new ModelAndView("/html/home");
-    }
 
 
     @GetMapping("/edit/{id}")
