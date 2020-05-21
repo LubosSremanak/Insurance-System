@@ -10,7 +10,7 @@ public class AutoIncrement {
 
     public AutoIncrement() {
         id = new AtomicLong();
-        this.id.set(1);
+        this.id.set(2);
     }
 
     public long getId() {
