@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -38,16 +39,18 @@ public class ContractController extends SpringController {
 
 
     @GetMapping("/contract")
-    public String drawContracts(Model model) {
+    public ModelAndView drawContracts(Model model) {
         model.addAttribute("contract", userManager.getContracts());
-        return "/html/contracts";
+        return new ModelAndView("/html/contracts");
     }
 
     @GetMapping("/detail/contract/{contractId}")
-    public String drawContractDetail(@PathVariable long contractId, Model model) {
+    public ModelAndView drawContractDetail(@PathVariable long contractId, Model model) {
         Contract contract = userManager.getContract(contractId);
         model.addAttribute("contract", contract);
-        return pathFromClass(contract) + "Detail";
+        ModelAndView modelAndView = pathFromClass(contract);
+        modelAndView.setViewName(modelAndView.getViewName() + "Detail");
+        return modelAndView;
     }
 
 
@@ -83,7 +86,7 @@ public class ContractController extends SpringController {
 
 
     @GetMapping("/edit/contract/{contractId}/{userId}")
-    public String drawEditContract(@PathVariable long contractId, @PathVariable long userId, Model model) {
+    public ModelAndView drawEditContract(@PathVariable long contractId, @PathVariable long userId, Model model) {
         Contract contract = userManager.editContract(userId, contractId);
         model.addAttribute("contract", contract);
         model.addAttribute("edit", true);
@@ -131,7 +134,7 @@ public class ContractController extends SpringController {
     }
 
     @PostMapping("/create/contract/{userId}")
-    public String createContract(@Valid @ModelAttribute ComboBox comboBox, Model model, @PathVariable long userId) {
+    public ModelAndView createContract(@Valid @ModelAttribute ComboBox comboBox, Model model, @PathVariable long userId) {
         Insurances insurance = comboBox.getInsurance();
         model.addAttribute("userId", userId);
         model.addAttribute("edit", false);
@@ -160,20 +163,20 @@ public class ContractController extends SpringController {
 
     }
 
-    private String pathFromClass(Contract insurance) {
+    private ModelAndView pathFromClass(Contract insurance) {
 
 
         if (insurance instanceof TravelInsurance) {
-            return "/html/insurances/life/travel";
+            return new ModelAndView("/html/insurances/life/travel");
         }
         if (insurance instanceof HomeInsurance) {
-            return "/html/insurances/nonLife/home";
+            return new ModelAndView("/html/insurances/nonLife/home");
         }
         if (insurance instanceof ApartmentInsurance) {
-            return "/html/insurances/nonLife/apartment";
+            return new ModelAndView("/html/insurances/nonLife/apartment");
         }
 
-        return "/html/insurances/life/accident";
+        return new ModelAndView("/html/insurances/life/accident");
 
     }
 

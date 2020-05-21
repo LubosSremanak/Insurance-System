@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -28,7 +29,7 @@ public class UserController extends SpringController {
     }
 
     @GetMapping("/edit/{id}")
-    public String drawEdit(@PathVariable long id, Model model, boolean detail) {
+    public ModelAndView drawEdit(@PathVariable long id, Model model, boolean detail) {
 
         model.addAttribute("user", userManager.editUser(id));
 
@@ -37,7 +38,7 @@ public class UserController extends SpringController {
         } else {
             model.addAttribute("edit", true);
         }
-        return "/html/addUser";
+        return  new ModelAndView("/html/addUser");
     }
 
 
@@ -49,18 +50,18 @@ public class UserController extends SpringController {
     }
 
     @GetMapping("/user")
-    public String drawUser(Model model) {
+    public  ModelAndView drawUser(Model model) {
         model.addAttribute("userList", userManager.getUsers());
-        return "/html/user";
+        return new ModelAndView("/html/user");
     }
 
     @GetMapping("/addUser")
-    public String drawAddUser(Model model) {
+    public  ModelAndView drawAddUser(Model model) {
 
         model.addAttribute("user", new User(this.userId.getId()));
         model.addAttribute("edit", false);
 
-        return "/html/addUser";
+        return new ModelAndView("/html/addUser");
     }
 
     @PostMapping("/user")
@@ -75,7 +76,7 @@ public class UserController extends SpringController {
     }
 
     @GetMapping("/edit/detail/{id}")
-    public String drawDetailEdit(@PathVariable long id, Model model) {
+    public  ModelAndView drawDetailEdit(@PathVariable long id, Model model) {
         model.addAttribute("edit", 2);
         return drawEdit(id, model, true);
     }
@@ -89,11 +90,11 @@ public class UserController extends SpringController {
 
 
     @GetMapping("/detail/{id}")
-    public String drawUserDetail(@PathVariable long id, Model model) {
+    public  ModelAndView drawUserDetail(@PathVariable long id, Model model) {
         model.addAttribute("user", userManager.editUser(id));
         model.addAttribute("allInsurances", Insurances.values());
         model.addAttribute("comboBox", new ComboBox());
-        return "/html/detail";
+        return  new ModelAndView("/html/detail");
     }
 
 }
