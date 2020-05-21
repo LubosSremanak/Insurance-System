@@ -37,8 +37,8 @@
 
 </div>
 
-<form id="field"  th:object="${contract}"
-      th:onsubmit="'return actionOnSubmit('+${edit}+','+${contractId}+','+${userId}+')'"  method="post">
+<form id="field" method="post"
+      th:object="${contract}" th:onsubmit="'return actionOnSubmit('+${edit}+','+${contractId}+','+${userId}+')'">
 
     <div class="undUndSection">
         <h1 class="center">Date</h1>
@@ -51,12 +51,12 @@
     <div class="undUndSection">
         <h1 class="center">Payment</h1>
         <label>Indemnity</label>
-        <input id="indemnity" placeholder="" required th:field="*{indemnity}" min="0" type="number"/><br>
+        <input id="indemnity" min="0" placeholder="" required th:field="*{indemnity}" type="number"/><br>
         <div class="undUndSection">
             <label>Monthly payment</label>
-            <input id="monthlyPayment" placeholder="" required th:field="*{monthlyPayment}" min="0" type="number"/><br>
+            <input id="monthlyPayment" min="0" placeholder="" required th:field="*{monthlyPayment}" type="number"/><br>
             <label>Value of house hold</label>
-            <input id=" valueOfHousehold" placeholder="" required th:field="*{valueOfHousehold}" min="0" type="number"/>
+            <input id=" valueOfHousehold" min="0" placeholder="" required th:field="*{valueOfHousehold}" type="number"/>
         </div>
 
     </div>
@@ -72,15 +72,15 @@
         <input id="HouseNumber" min="1" placeholder="21" required th:field="*{address.houseNumber}"
                type="number"/><br/>
         <label for=PSC>PSC</label>
-        <input id="PSC" placeholder="08001" required th:field="*{address.psc}" type="text"
-               minlength="5" maxlength="6" />
+        <input id="PSC" maxlength="6" minlength="5" placeholder="08001" required
+               th:field="*{address.psc}" type="text"/>
     </div>
 
     <div class="undUndSection">
         <h1 class="center">Real estate</h1>
         <label>Type</label>
         <select id="typeOfRealEstate" name="typeOfRealEstate"
-                style="width:22.5% ;background-color: black;color: whitesmoke" required>
+                required style="width:22.5% ;background-color: black;color: whitesmoke">
             <option hidden value=""> Select type</option>
             <option th:each="estate : ${allRealEstates}"
                     th:text="${estate.toWord()}"
@@ -89,7 +89,7 @@
         </select><br>
 
         <label>Value</label>
-        <input id="realEstateValue" placeholder="200,50€" required th:field="*{realEstateValue}" min="0" type="number"/>
+        <input id="realEstateValue" min="0" placeholder="200,50€" required th:field="*{realEstateValue}" type="number"/>
 
     </div>
     <div class="undHeadSection">
@@ -101,9 +101,9 @@
 <script>
     function actionOnSubmit(control, contractId, userId) {
 
-        var isValidateDate=checkDate();
+        var isValidateDate = checkDate();
         //Get the selected value of the select list
-        if(!isValidateDate) {
+        if (!isValidateDate) {
             return false;
         }
 
@@ -120,13 +120,14 @@
         var frm = document.getElementById('field');
         frm.action = val;
     }
+
     function checkDate() {
         var selectedTextBegin = document.getElementById('beginDate').value;
         var selectedTextEnd = document.getElementById('endDate').value;
         var beginDate = new Date(selectedTextBegin);
         var endDate = new Date(selectedTextEnd);
 
-        if (beginDate>=endDate) {
+        if (beginDate >= endDate) {
             alert("Begin date must be smaller as End date!");
             return false;
         }

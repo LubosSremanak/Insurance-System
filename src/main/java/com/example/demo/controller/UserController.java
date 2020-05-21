@@ -29,9 +29,6 @@ public class UserController extends SpringController {
     }
 
 
-
-
-
     @GetMapping("/edit/{id}")
     public ModelAndView drawEdit(@PathVariable long id, Model model, boolean detail) {
 
@@ -42,7 +39,7 @@ public class UserController extends SpringController {
         } else {
             model.addAttribute("edit", true);
         }
-        return  new ModelAndView("/html/addUser");
+        return new ModelAndView("/html/addUser");
     }
 
 
@@ -54,13 +51,13 @@ public class UserController extends SpringController {
     }
 
     @GetMapping("/user")
-    public  ModelAndView drawUser(Model model) {
+    public ModelAndView drawUser(Model model) {
         model.addAttribute("userList", userManager.getUsers());
         return new ModelAndView("/html/user");
     }
 
     @GetMapping("/addUser")
-    public  ModelAndView drawAddUser(Model model) {
+    public ModelAndView drawAddUser(Model model) {
 
         model.addAttribute("user", new User(this.userId.getId()));
         model.addAttribute("edit", false);
@@ -80,7 +77,7 @@ public class UserController extends SpringController {
     }
 
     @GetMapping("/edit/detail/{id}")
-    public  ModelAndView drawDetailEdit(@PathVariable long id, Model model) {
+    public ModelAndView drawDetailEdit(@PathVariable long id, Model model) {
         model.addAttribute("edit", 2);
         return drawEdit(id, model, true);
     }
@@ -94,11 +91,11 @@ public class UserController extends SpringController {
 
 
     @GetMapping("/detail/{id}")
-    public  ModelAndView drawUserDetail(@PathVariable long id, Model model) {
+    public ModelAndView drawUserDetail(@PathVariable long id, Model model) {
         model.addAttribute("user", userManager.editUser(id));
         model.addAttribute("allInsurances", Insurances.values());
         model.addAttribute("comboBox", new ComboBox());
-        return  new ModelAndView("/html/detail");
+        return new ModelAndView("/html/detail");
     }
 
 }

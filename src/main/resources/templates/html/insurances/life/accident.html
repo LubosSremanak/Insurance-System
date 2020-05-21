@@ -35,34 +35,35 @@
 
 </div>
 
-<form id="field" th:object="${contract}"
-      th:onsubmit="'return actionOnSubmit('+${edit}+','+${contractId}+','+${userId}+')'"  method="post" >
+<form id="field" method="post"
+      th:object="${contract}" th:onsubmit="'return actionOnSubmit('+${edit}+','+${contractId}+','+${userId}+')'">
 
     <div class="undUndSection">
         <h1 class="center">Date</h1>
         <label>Begin date</label>
-        <input id="beginDate" placeholder=""  th:field="*{beginInsurance}"   required type="date"/><br/>
+        <input id="beginDate" placeholder="" required th:field="*{beginInsurance}" type="date"/><br/>
         <label>End Date</label>
-        <input id="endDate" placeholder="" th:field="*{endInsurance}"  required type="date"/><br/>
+        <input id="endDate" placeholder="" required th:field="*{endInsurance}" type="date"/><br/>
     </div>
     <div class="undUndSection">
         <h1 class="center">Payment</h1>
         <label>Indemnity</label>
-        <input id="indemnity" placeholder=""  th:field="*{indemnity}"  min="0" required type="number"/><br>
+        <input id="indemnity" min="0" placeholder="" required th:field="*{indemnity}" type="number"/><br>
         <label>Monthly payment</label>
-        <input id="monthlyPayment" placeholder=""  th:field="*{monthlyPayment}" min="0" required type="number"/><br>
+        <input id="monthlyPayment" min="0" placeholder="" required th:field="*{monthlyPayment}" type="number"/><br>
 
         <label>Death</label>
-        <input id="death" placeholder=""  th:field="*{death}" min="0" required type="number"/><br>
+        <input id="death" min="0" placeholder="" required th:field="*{death}" type="number"/><br>
         <label>Permanent insult consequences </label>
-        <input id="permanentInsultConsequences" placeholder=""  th:field="*{permanentInsultConsequences}"
-               min="0"  required type="number"/><br>
+        <input id="permanentInsultConsequences" min="0" placeholder=""
+               required th:field="*{permanentInsultConsequences}" type="number"/><br>
         <label>Daily hospital compensation</label>
-        <input id="dailyHospitalCompensation" placeholder="" th:field="*{dailyHospitalCompensation}" min="0" required type="number"/>
+        <input id="dailyHospitalCompensation" min="0" placeholder="" required th:field="*{dailyHospitalCompensation}"
+               type="number"/>
     </div>
     <div class="undUndSection">
         <h1 class="center">Person</h1>
-        <select id="insured.id" name="insured.id" style="background-color: black;color: whitesmoke"  required >
+        <select id="insured.id" name="insured.id" required style="background-color: black;color: whitesmoke">
             <option hidden value=""> Select insured</option>
             <option th:each="user : ${users}"
                     th:text="${user.value.identification.firstName}+' '+${user.value.identification.lastName}+' '+${user.value.id}"
@@ -73,7 +74,8 @@
 
     <div class="undUndSection">
         <h1 class="center">Territorial validity</h1>
-        <select id="territorialValidity" name="territorialValidity" style="background-color: black;color: whitesmoke" required>
+        <select id="territorialValidity" name="territorialValidity" required
+                style="background-color: black;color: whitesmoke">
             <option hidden value="">Select area</option>
             <option th:each="territorial : ${allTerritorialValidity}"
                     th:text="${territorial.toWord()}"
@@ -90,24 +92,24 @@
 <script>
     function actionOnSubmit(control, contractId, userId) {
 
-        var isValidateDate=checkDate();
+        var isValidateDate = checkDate();
         //Get the selected value of the select list
-        if(!isValidateDate) {
+        if (!isValidateDate) {
             return false;
         }
 
 
-            var val = "/add/Accident/" + userId;
+        var val = "/add/Accident/" + userId;
 
-            if (control)
-                val = "/edit/Accident/" + contractId + "/" + userId;
+        if (control)
+            val = "/edit/Accident/" + contractId + "/" + userId;
 
 
-            /* if (detail)
-             val = "/edit/contract/detail/" + id;*/
+        /* if (detail)
+         val = "/edit/contract/detail/" + id;*/
 
-            var frm = document.getElementById('field');
-            frm.action = val;
+        var frm = document.getElementById('field');
+        frm.action = val;
 
 
     }
@@ -119,7 +121,7 @@
         var beginDate = new Date(selectedTextBegin);
         var endDate = new Date(selectedTextEnd);
 
-        if (beginDate>=endDate) {
+        if (beginDate >= endDate) {
             alert("Begin date must be smaller as End date!");
             return false;
         }

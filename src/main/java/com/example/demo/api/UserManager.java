@@ -2,13 +2,9 @@ package com.example.demo.api;
 
 
 import com.example.demo.contract.Contract;
-import com.example.demo.contract.insurance.life.LifeInsurance;
-import com.example.demo.contract.insurance.life.accident.AccidentInsurance;
-import com.example.demo.contract.insurance.life.travel.TravelInsurance;
 import com.example.demo.user.User;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -61,12 +57,12 @@ public class UserManager {
         return users;
     }
 
-    public void printUser(long id) {
-        System.out.println(getUser(id));
-    }
-
     public void setUsers(Map<Long, User> users) {
         this.users = users;
+    }
+
+    public void printUser(long id) {
+        System.out.println(getUser(id));
     }
 
     public void createContract(long userId, Contract contract) {
@@ -85,7 +81,6 @@ public class UserManager {
     public List<Contract> getContracts(long id) {
         return getUser(id).getContracts();
     }
-
 
 
 }

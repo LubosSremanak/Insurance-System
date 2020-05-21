@@ -10,7 +10,7 @@ public class Identification {
     @NotBlank
     private String firstName, lastName;
     @NotBlank
-    @Size(min = 11, max =11)
+    @Size(min = 11, max = 11)
     @Pattern(regexp = "^[0-9]{6}(/[0-9]{4})?$")
     private String IdentificationNumber;
 

@@ -42,11 +42,12 @@
     <div class="undUndSection">
         <h1 class="center">Identity</h1>
         <label for="Name">Name</label>
-        <input id="Name" placeholder="Name" th:field="*{identification.firstName}" required type="text"/><br/>
+        <input id="Name" placeholder="Name" required th:field="*{identification.firstName}" type="text"/><br/>
         <label for="Surname">Surname</label>
-        <input id="Surname" placeholder="Surname" th:field="*{identification.lastName}" required type="text"/><br/>
+        <input id="Surname" placeholder="Surname" required th:field="*{identification.lastName}" type="text"/><br/>
         <label for="IdentificationCode">Identity code</label>
-        <input id="IdentificationCode" placeholder="892109/8564" MINLENGTH="11" maxlength="11" required pattern="^[0-9]{6}(/[0-9]{4})?$"
+        <input MINLENGTH="11" id="IdentificationCode" maxlength="11" pattern="^[0-9]{6}(/[0-9]{4})?$" placeholder="892109/8564"
+               required
                th:field="*{identification.identificationNumber}" type="text"/>
 
     </div>
@@ -54,25 +55,25 @@
     <div class="undUndSection">
         <h1 class="center">Contact</h1>
         <label for=Email>Email"</label>
-        <input id="Email" placeholder="name@domen.sk" th:field="*{contact.email}" required type="email"/><br/>
+        <input id="Email" placeholder="name@domen.sk" required th:field="*{contact.email}" type="email"/><br/>
         <label for=PhoneNumber>Phone</label>
-        <input id="PhoneNumber" placeholder="0988 265 589" th:field="*{contact.phoneNumber}"
-              minlength="10" maxlength="10" required type="text"/>
+        <input id="PhoneNumber" maxlength="10" minlength="10"
+               placeholder="0988 265 589" required th:field="*{contact.phoneNumber}" type="text"/>
     </div>
     <div class="undUndSection">
         <h1 class="center">Address</h1>
         <label for=Country>Country</label>
-        <input id="Country" placeholder="Slovakia" th:field="*{address.place.country}" required type="text"/><br/>
+        <input id="Country" placeholder="Slovakia" required th:field="*{address.place.country}" type="text"/><br/>
         <label for=City>City</label>
-        <input id="City" placeholder="Presov" th:field="*{address.place.city}" required type="text"/><br/>
+        <input id="City" placeholder="Presov" required th:field="*{address.place.city}" type="text"/><br/>
         <label for=Street>Street</label>
-        <input id="Street" placeholder="Sibirska" th:field="*{address.place.street}" required type="text"/><br/>
+        <input id="Street" placeholder="Sibirska" required th:field="*{address.place.street}" type="text"/><br/>
         <label for=HouseNumber>House number</label>
-        <input id="HouseNumber" min="1" placeholder="21" th:field="*{address.houseNumber}"
-               required type="number"/><br/>
+        <input id="HouseNumber" min="1" placeholder="21" required
+               th:field="*{address.houseNumber}" type="number"/><br/>
 
         <label for=PSC>PSC</label>
-        <input id="PSC" placeholder="08001" th:field="*{address.psc}" required type="text" minlength="5" maxlength="6"/>
+        <input id="PSC" maxlength="6" minlength="5" placeholder="08001" required th:field="*{address.psc}" type="text"/>
     </div>
 
     <div class="undUndSection">
@@ -95,8 +96,9 @@
             <input id="HouseNumberC" placeholder="21" th:field="*{correspondenceAddress.houseNumber}"
                    type="number"/><br/>
 
-        <label for=pscC>PSC</label>
-        <input id="pscC" placeholder="08001" th:field="*{correspondenceAddress.psc}" minlength="5" maxlength="6" type="text"/>
+            <label for=pscC>PSC</label>
+            <input id="pscC" maxlength="6" minlength="5" placeholder="08001" th:field="*{correspondenceAddress.psc}"
+                   type="text"/>
     </div>
     </p>
     <div class="undHeadSection">

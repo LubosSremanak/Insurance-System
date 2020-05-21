@@ -80,10 +80,10 @@
 </div>
 <div class="undHeadSection">
 
-            <a th:href="@{'/edit/detail/'+${user.id}}">
-                <img class="circle" src="/images/editUser.png" style="height: 55px"></a><br>
-            <label>Edit user</label>
-        </div>
+    <a th:href="@{'/edit/detail/'+${user.id}}">
+        <img class="circle" src="/images/editUser.png" style="height: 55px"></a><br>
+    <label>Edit user</label>
+</div>
 
 
 </div>
@@ -142,7 +142,7 @@
 
         <div class="row">
 
-            <select style="background-color: black;color: whitesmoke" th:field="*{insurance}" required>
+            <select required style="background-color: black;color: whitesmoke" th:field="*{insurance}">
                 <option hidden value=""> Select insurance</option>
                 <option th:each="contract : ${allInsurances}"
                         th:utext="${contract.toWord()}"
