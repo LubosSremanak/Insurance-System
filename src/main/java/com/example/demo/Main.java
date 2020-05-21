@@ -39,13 +39,13 @@ public class Main extends SpringController implements CommandLineRunner {
 
     @GetMapping("/")
     public ModelAndView drawHome() {
-        return new ModelAndView("/home");
+        return new ModelAndView("/html/home");
     }
 
     @Override
     public void run(String... args) {
-        testUser();
-        testUser1();
+       /* testUser();
+        testUser1();*/
     }
 
     private void testUser() {
