@@ -12,7 +12,6 @@ public abstract class SpringController {
 
     @Autowired
     public SpringController(UserManager userManager) {
-
         this.userManager = userManager;
     }
 

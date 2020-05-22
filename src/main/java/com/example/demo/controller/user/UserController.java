@@ -1,7 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.controller.user;
 
 import com.example.demo.api.UserManager;
 import com.example.demo.contract.insurance.Insurances;
+import com.example.demo.controller.SpringController;
 import com.example.demo.controller.item.ComboBox;
 import com.example.demo.user.AutoIncrement;
 import com.example.demo.user.User;
@@ -89,7 +90,7 @@ public class UserController extends SpringController {
     }
 
     @PostMapping("/edit/detail/{id}/{check}")
-    public String detailEditUser(@ModelAttribute @Valid User user,@PathVariable boolean check) {
+    public String detailEditUser(@ModelAttribute @Valid User user, @PathVariable boolean check) {
 
 
         if (check)

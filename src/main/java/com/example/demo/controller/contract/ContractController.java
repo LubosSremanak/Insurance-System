@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.contract;
 
 import com.example.demo.api.UserManager;
 import com.example.demo.contract.Contract;
@@ -10,6 +10,7 @@ import com.example.demo.contract.insurance.life.travel.TravelInsurance;
 import com.example.demo.contract.insurance.nonLife.TypeOfRealEstate;
 import com.example.demo.contract.insurance.nonLife.apartment.ApartmentInsurance;
 import com.example.demo.contract.insurance.nonLife.home.HomeInsurance;
+import com.example.demo.controller.SpringController;
 import com.example.demo.controller.item.ComboBox;
 import com.example.demo.user.AutoIncrement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +26,16 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Controller
-public class ContractController extends SpringController {
-    private final AutoIncrement contractId;
+public abstract class ContractController extends SpringController {
+
+    protected final AutoIncrement contractId;
 
 
     @Autowired
     public ContractController(UserManager userManager) {
         super(userManager);
         this.contractId = new AutoIncrement();
-
-
     }
-
 
     @GetMapping("/contract")
     public ModelAndView drawContracts(Model model) {
@@ -54,34 +53,11 @@ public class ContractController extends SpringController {
     }
 
 
-    private String editContract(Contract contract, long userId, long contractId) {
+    protected String editContract(Contract contract, long userId, long contractId) {
         contract.setContractNumber(contractId);
         contract.setInsurer(userManager.editUser(userId));
         userManager.editContract(userId, contractId).copy(contract);
         return "redirect:/detail/{userId}";
-    }
-
-    @PostMapping("/edit/Accident/{contractId}/{userId}")
-    public String editAccidentToUser(@ModelAttribute @Valid AccidentInsurance contract, @PathVariable long contractId, @PathVariable long userId) {
-        contract.setInsured(userManager.editUser(contract.getInsured().getId()));
-        return editContract(contract, userId, contractId);
-    }
-
-
-    @PostMapping("/edit/Travel/{contractId}/{userId}")
-    public String editTravelToUser(@ModelAttribute @Valid TravelInsurance contract, @PathVariable long contractId, @PathVariable long userId) {
-        contract.setInsured(userManager.editUser(contract.getInsured().getId()));
-        return editContract(contract, userId, contractId);
-    }
-
-    @PostMapping("/edit/Home/{contractId}/{userId}")
-    public String editHomeToUser(@ModelAttribute @Valid HomeInsurance contract, @PathVariable long contractId, @PathVariable long userId) {
-        return editContract(contract, userId, contractId);
-    }
-
-    @PostMapping("/edit/Apartment/{contractId}/{userId}")
-    public String editApartmentToUser(@ModelAttribute @Valid ApartmentInsurance contract, @PathVariable long contractId, @PathVariable long userId) {
-        return editContract(contract, userId, contractId);
     }
 
 
@@ -100,37 +76,13 @@ public class ContractController extends SpringController {
     }
 
 
-    private String addContract(Contract contract, long userId) {
+    protected String addContract(Contract contract, long userId) {
         contract.setFormation(LocalDate.now());
         contract.setContractNumber(this.contractId.getId());
         this.contractId.autoIncrement();
         contract.setInsurer(userManager.editUser(userId));
         userManager.createContract(userId, contract);
         return "redirect:/detail/{userId}";
-    }
-
-
-    @PostMapping("/add/Accident/{userId}")
-    public String addAccidentToUser(@ModelAttribute @Valid AccidentInsurance contract, @PathVariable long userId) {
-        contract.setInsured(userManager.editUser(contract.getInsured().getId()));
-        return addContract(contract, userId);
-    }
-
-
-    @PostMapping("/add/Travel/{userId}")
-    public String addTravelToUser(@ModelAttribute @Valid TravelInsurance contract, @PathVariable long userId) {
-        contract.setInsured(userManager.editUser(contract.getInsured().getId()));
-        return addContract(contract, userId);
-    }
-
-    @PostMapping("/add/Home/{userId}")
-    public String addHomeToUser(@Valid @ModelAttribute HomeInsurance contract, @PathVariable long userId) {
-        return addContract(contract, userId);
-    }
-
-    @PostMapping("/add/Apartment/{userId}")
-    public String addApartmentToUser(@Valid @ModelAttribute ApartmentInsurance contract, @PathVariable long userId) {
-        return addContract(contract, userId);
     }
 
     @PostMapping("/create/contract/{userId}")
@@ -147,7 +99,7 @@ public class ContractController extends SpringController {
         return pathFromClass(contract);
     }
 
-    private Contract contractFromType(Insurances insurance, long contractId) {
+    protected Contract contractFromType(Insurances insurance, long contractId) {
 
 
         if (insurance.equals(Insurances.TRAVEL)) {
@@ -163,7 +115,7 @@ public class ContractController extends SpringController {
 
     }
 
-    private ModelAndView pathFromClass(Contract insurance) {
+    protected ModelAndView pathFromClass(Contract insurance) {
 
 
         if (insurance instanceof TravelInsurance) {
