@@ -1,4 +1,4 @@
-package com.herokuapp.insurance.controller.contract.insurance.accident;
+package com.herokuapp.insurance.controller.contract.insurance;
 
 import com.herokuapp.insurance.contract.insurance.life.travel.TravelInsurance;
 import com.herokuapp.insurance.api.UserManager;

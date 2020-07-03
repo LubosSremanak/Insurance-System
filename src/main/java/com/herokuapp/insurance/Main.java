@@ -35,6 +35,7 @@ public class Main implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
         log.print("Open in browser: http://localhost:8081");
+
     }
 
 
